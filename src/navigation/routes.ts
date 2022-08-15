@@ -5,5 +5,5 @@ export enum MainScreens {
 
 export type RootStackParamList = {
   HomeScreen: undefined;
-  DetailsScreen: {movieId: string};
+  DetailsScreen: {movieId: string; title: string};
 };
