@@ -22,7 +22,7 @@ export const Card = ({imageSrc, title, onPress}: Props) => {
           width: 100,
           height: 200,
           backgroundColor: 'coral',
-          marginHorizontal: 4,
+          marginRight: 4,
         }}>
         <Image
           style={{width: 100, height: 100}}

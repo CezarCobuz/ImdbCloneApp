@@ -8,12 +8,11 @@ import {Card} from '../../components/Card/Card';
 import {Carousel} from '../../components/Carousel/Carousel';
 import {RootStackParamList} from '../../navigation/routes';
 import {MovieCarouselData} from '../../types/movies';
+import {styles} from './styles';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
 
 export const HomeScreen = () => {
-  // TODO: Use this is the screen
-
   const [moviesCarousels, setMoviesCarousels] = useState<MovieCarouselData>();
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -35,8 +34,7 @@ export const HomeScreen = () => {
   const navigation = useNavigation<Props['navigation']>();
 
   return (
-    <SafeAreaView
-      style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <SafeAreaView style={styles.screen}>
       {isLoaded && (
         <ScrollView>
           {moviesCarousels?.carousels.map(carousel => {
@@ -46,19 +44,26 @@ export const HomeScreen = () => {
                 key={title}
                 title={title}
                 data={items}
-                renderItem={item => (
-                  <Card
-                    key={item.id}
-                    imageSrc={item.posterUrl}
-                    title={item.title}
-                    onPress={() =>
-                      navigation.navigate('DetailsScreen', {
-                        movieId: item.id,
-                        title: item.title,
-                      })
-                    }
-                  />
-                )}
+                renderItem={item => {
+                  const {id, posterUrl, title, director, actors, plot} = item;
+                  return (
+                    <Card
+                      key={id}
+                      imageSrc={posterUrl}
+                      title={title}
+                      onPress={() =>
+                        navigation.navigate('DetailsScreen', {
+                          movieId: id,
+                          title,
+                          posterUrl,
+                          director,
+                          actors,
+                          plot,
+                        })
+                      }
+                    />
+                  );
+                }}
               />
             );
           })}
