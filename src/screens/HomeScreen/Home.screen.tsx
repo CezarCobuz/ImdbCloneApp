@@ -44,13 +44,15 @@ export const HomeScreen = () => {
                 title={title}
                 data={items}
                 style={styles.section}
-                renderItem={item => {
+                renderItem={(item, index) => {
                   const {id, posterUrl, title, director, actors, plot} = item;
+                  const isFirst = index === 0;
                   return (
                     <Card
                       key={id}
                       imageSrc={posterUrl}
                       title={title}
+                      style={isFirst ? styles.firstItemOffset : null}
                       onPress={() =>
                         navigation.navigate('DetailsScreen', {
                           movieId: id,

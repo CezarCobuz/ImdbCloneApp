@@ -7,8 +7,8 @@ type CarouselItemType = any;
 type Props = {
   title?: string;
   data: CarouselItemType[];
-  renderItem: (item: CarouselItemType) => JSX.Element;
-  style?: ViewStyle;
+  renderItem: (item: CarouselItemType, index: number) => JSX.Element;
+  style?: ViewStyle | null;
 };
 
 export const Carousel = ({
@@ -20,8 +20,8 @@ export const Carousel = ({
   return (
     <View style={style}>
       <Text style={styles.title}>{title}</Text>
-      <ScrollView horizontal>
-        {data.map(dataItem => renderItem(dataItem))}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {data.map((dataItem, index) => renderItem(dataItem, index))}
       </ScrollView>
     </View>
   );
