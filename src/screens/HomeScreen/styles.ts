@@ -3,10 +3,14 @@ import {theme} from '../../assets/theme';
 
 type Styles = {
   screen: ViewStyle;
+  section: ViewStyle;
 };
 
 export const styles = StyleSheet.create<Styles>({
   screen: {
-    paddingHorizontal: theme.space.m,
+    padding: theme.space.m,
+  },
+  section: {
+    paddingBottom: theme.space.l,
   },
 });

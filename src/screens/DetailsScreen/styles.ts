@@ -17,14 +17,6 @@ export const styles = StyleSheet.create<Styles>({
     flex: 1,
   },
   poster: {
-    // height: 100,
-    // height: '100%',
-    // aspectRatio: 1,
-    // resizeMode: 'cover',
-    // width: '100%',
-    // flex: 1,
-    // resizeMode: 'center',
-    // height: '100%',
     aspectRatio: POSTER_ASPECT_RATIO,
   },
   spacer: {

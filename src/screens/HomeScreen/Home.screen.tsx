@@ -1,8 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
-import {ScrollView} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {ScrollView, View} from 'react-native';
 import {fetchMovies} from '../../apis/movies';
 import {Card} from '../../components/Card/Card';
 import {Carousel} from '../../components/Carousel/Carousel';
@@ -34,7 +33,7 @@ export const HomeScreen = () => {
   const navigation = useNavigation<Props['navigation']>();
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <View style={styles.screen}>
       {isLoaded && (
         <ScrollView>
           {moviesCarousels?.carousels.map(carousel => {
@@ -44,6 +43,7 @@ export const HomeScreen = () => {
                 key={title}
                 title={title}
                 data={items}
+                style={styles.section}
                 renderItem={item => {
                   const {id, posterUrl, title, director, actors, plot} = item;
                   return (
@@ -69,6 +69,6 @@ export const HomeScreen = () => {
           })}
         </ScrollView>
       )}
-    </SafeAreaView>
+    </View>
   );
 };
