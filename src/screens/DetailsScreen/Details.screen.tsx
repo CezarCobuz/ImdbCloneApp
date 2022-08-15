@@ -9,7 +9,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'DetailsScreen'>;
 // Send only movie id here ?
 export const DetailsScreen = ({route}: Props) => {
   const {movieId, title} = route.params;
-  console.log('+++ movieId', movieId);
   return (
     <SafeAreaView
       style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

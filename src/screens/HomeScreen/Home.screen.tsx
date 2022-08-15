@@ -49,7 +49,7 @@ export const HomeScreen = () => {
                 renderItem={item => (
                   <Card
                     key={item.id}
-                    imageSrc=""
+                    imageSrc={item.posterUrl}
                     title={item.title}
                     onPress={() =>
                       navigation.navigate('DetailsScreen', {

@@ -1,5 +1,11 @@
 import React from 'react';
-import {GestureResponderEvent, Pressable, View} from 'react-native';
+import {
+  GestureResponderEvent,
+  Image,
+  Pressable,
+  Text,
+  View,
+} from 'react-native';
 
 type Props = {
   imageSrc: string;
@@ -17,8 +23,15 @@ export const Card = ({imageSrc, title, onPress}: Props) => {
           height: 200,
           backgroundColor: 'coral',
           marginHorizontal: 4,
-        }}
-      />
+        }}>
+        <Image
+          style={{width: 100, height: 100}}
+          source={{
+            uri: imageSrc,
+          }}
+        />
+        <Text>{title}</Text>
+      </View>
     </Pressable>
   );
 };
