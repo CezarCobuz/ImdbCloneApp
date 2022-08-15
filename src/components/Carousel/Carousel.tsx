@@ -1,25 +1,28 @@
 import React from 'react';
-import {ScrollView, Text} from 'react-native';
+import {ScrollView, Text, View, ViewStyle} from 'react-native';
+import {styles} from './styles';
 
 type CarouselItemType = any;
 
 type Props = {
   title?: string;
   data: CarouselItemType[];
-  renderItem: (item: CarouselItemType) => JSX.Element;
+  renderItem: (item: CarouselItemType, index: number) => JSX.Element;
+  style?: ViewStyle | null;
 };
 
 export const Carousel = ({
   title = '',
   data,
   renderItem,
+  style,
 }: Props): JSX.Element => {
   return (
-    <>
-      <Text>{title}</Text>
-      <ScrollView horizontal>
-        {data.map(dataItem => renderItem(dataItem))}
+    <View style={style}>
+      <Text style={styles.title}>{title}</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {data.map((dataItem, index) => renderItem(dataItem, index))}
       </ScrollView>
-    </>
+    </View>
   );
 };
