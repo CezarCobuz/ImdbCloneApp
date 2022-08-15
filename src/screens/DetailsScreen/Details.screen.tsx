@@ -1,19 +1,38 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {Text} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {Image, ScrollView, Text, View} from 'react-native';
+import {strings} from '../../assets/strings';
 import {RootStackParamList} from '../../navigation/routes';
+import {styles} from './styles';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'DetailsScreen'>;
 
-// Send only movie id here ?
 export const DetailsScreen = ({route}: Props) => {
-  const {movieId, title} = route.params;
+  const {director, actors, plot, posterUrl} = route.params;
   return (
-    <SafeAreaView
-      style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-      <Text>{title}</Text>
-    </SafeAreaView>
+    <View style={[styles.flexed]}>
+      <ScrollView>
+        <Image
+          style={styles.poster}
+          source={{
+            uri: posterUrl,
+          }}
+        />
+
+        <View style={[styles.flexed, styles.textDetailsContainer]}>
+          <Text style={styles.directorText}>
+            {strings.detailsScreen.director}: {director}
+          </Text>
+
+          <View style={styles.spacer} />
+          <Text style={styles.actorsText}>
+            {strings.detailsScreen.actors}: {actors}
+          </Text>
+
+          <View style={styles.spacer} />
+          <Text>{plot}</Text>
+        </View>
+      </ScrollView>
+    </View>
   );
 };
