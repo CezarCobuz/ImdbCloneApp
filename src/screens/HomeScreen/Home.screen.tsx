@@ -1,13 +1,13 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
-import {Button, ScrollView, Text} from 'react-native';
+import {ScrollView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {fetchMovies} from '../../apis/movies';
 import {Card} from '../../components/Card/Card';
 import {Carousel} from '../../components/Carousel/Carousel';
 import {RootStackParamList} from '../../navigation/routes';
-import {MovieCarousel, MovieCarouselData} from '../../types/movies';
+import {MovieCarouselData} from '../../types/movies';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>;
 
@@ -23,7 +23,6 @@ export const HomeScreen = () => {
       .then(
         result => {
           setIsLoaded(true);
-          console.log('+++ result', result);
           setMoviesCarousels(result);
         },
         error => {
@@ -47,16 +46,22 @@ export const HomeScreen = () => {
                 key={title}
                 title={title}
                 data={items}
-                renderItem={item => <Card imageSrc="" title={item.title} />}
+                renderItem={item => (
+                  <Card
+                    key={item.id}
+                    imageSrc=""
+                    title={item.title}
+                    onPress={() =>
+                      navigation.navigate('DetailsScreen', {
+                        movieId: item.id,
+                        title: item.title,
+                      })
+                    }
+                  />
+                )}
               />
             );
           })}
-          <Button
-            title="Go to Details Screen"
-            onPress={() =>
-              navigation.navigate('DetailsScreen', {movieId: '86,'})
-            }
-          />
         </ScrollView>
       )}
     </SafeAreaView>
